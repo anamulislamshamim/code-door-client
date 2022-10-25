@@ -1,14 +1,30 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { authContext } from '../../contexts/AuthContext';
 
 export const Register = () => {
+    const { logIn } = useContext(authContext);
+    const submitHandeler = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const fullName = form.fullName.value;
+        const profilePicture = form.profilePicture.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(fullName, profilePicture, email, password);
+        logIn(email, password)
+            .then(() => {
+                toast.success("Login Successfull!");
+            })
+            .catch(() => {
+                toast.error("Wrong password or email!");
+            });
+
+    };
     return (
         <div className="relative">
-            {/* <img
-                src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7875.jpg?w=826&t=st=1666671899~exp=1666672499~hmac=97468cf36d8ca80be7127b58bca75f8d4416380d25f94f4ad929db45a1fa45e5"
-                className="absolute inset-0 bg-cover w-full h-full"
-                alt=""
-            /> */}
             <div className="relative bg-white bg-opacity-75">
                 <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                     <div className="flex flex-col items-center justify-between xl:flex-row">
@@ -20,7 +36,7 @@ export const Register = () => {
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
                                     Please Sign Up
                                 </h3>
-                                <form>
+                                <form onSubmit={ submitHandeler }>
                                     <div className="mb-1 sm:mb-2">
                                         <label
                                             htmlFor="email"
@@ -62,7 +78,7 @@ export const Register = () => {
                                         </button>
                                     </div>
                                     <p className="text-xs text-gray-600 sm:text-sm">
-                                        Have not account yet? <Link to="/register">Please Register</Link>
+                                        Have not account yet? <Link to="/register" className='text-green-400'>Please Register</Link>
                                     </p>
                                 </form>
                             </div>
