@@ -24,6 +24,7 @@ export const Register = () => {
                 () => {
                     updateUserProfile(profile);
                     toast.success("User created successfully!");
+                    form.reset();
                 }
             )
             .catch((error) => {
@@ -87,7 +88,7 @@ export const Register = () => {
                                         <input
                                             placeholder="john.doe@example.org"
                                             required
-                                            type="text"
+                                            type="email"
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="email"
                                             name="email"

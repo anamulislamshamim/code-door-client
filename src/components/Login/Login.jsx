@@ -1,26 +1,38 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { authContext } from '../../contexts/AuthContext';
 
 export const Register = () => {
-    const { logIn } = useContext(authContext);
+    const { logIn, forgottenPassword } = useContext(authContext);
+    const [ email, setEmail ] = useState(undefined);
     const submitHandeler = (event) => {
         event.preventDefault();
         const form = event.target;
-        const fullName = form.fullName.value;
-        const profilePicture = form.profilePicture.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(fullName, profilePicture, email, password);
+        console.log(email, password);
         logIn(email, password)
             .then(() => {
                 toast.success("Login Successfull!");
+                form.reset();
             })
             .catch(() => {
                 toast.error("Wrong password or email!");
             });
+
+    };
+    const passwordResetHandeler = () => {
+        if(!email){
+            toast.warning("Please enter the valid email");
+            return;
+        };
+        forgottenPassword(email)
+            .then(() => {
+                toast.success("Please check your email!");
+            }).catch(() => toast.error("Try again!"));
 
     };
     return (
@@ -34,7 +46,7 @@ export const Register = () => {
                         <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
                             <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                                    Please Sign Up
+                                    Please Login
                                 </h3>
                                 <form onSubmit={ submitHandeler }>
                                     <div className="mb-1 sm:mb-2">
@@ -46,8 +58,9 @@ export const Register = () => {
                                         </label>
                                         <input
                                             placeholder="Email"
+                                            onBlur={(event) => setEmail(event.target.value)}
                                             required
-                                            type="text"
+                                            type="email"
                                             className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                                             id="email"
                                             name="email"
@@ -69,6 +82,7 @@ export const Register = () => {
                                             name="password"
                                         />
                                     </div>
+                                    <p><Link onClick={ passwordResetHandeler } className='mb-1 sm:mb-2 text-green-600'>Forgotten password?</Link></p>
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         <button
                                             type="submit"
