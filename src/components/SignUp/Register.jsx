@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
 import { authContext } from '../../contexts/AuthContext';
@@ -9,7 +9,10 @@ import { toast } from 'react-toastify';
 
 export const Register = () => {
     const [check, setCheck] = useState(false);
-    const { registerWithEmailAndPassword, updateUserProfile } = useContext(authContext);
+    const { registerWithEmailAndPassword, updateUserProfile, loginWithGoogle } = useContext(authContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
     const submitHandeler = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -25,13 +28,23 @@ export const Register = () => {
                     updateUserProfile(profile);
                     toast.success("User created successfully!");
                     form.reset();
+                    navigate(from, { replace: true })
                 }
             )
             .catch((error) => {
                 toast.error("something went wrong!");
             });
-
     };
+    const googleLoginHandeler = () => {
+        loginWithGoogle()
+            .then(() => {
+                toast.success("Signed successfully");
+                navigate(from, { replace: true });
+            })
+            .catch(() => {
+                toast.error("please try again!");
+            })
+    }
     return (
         <div className="relative">
             <div className="relative bg-white bg-opacity-75">
@@ -130,7 +143,7 @@ export const Register = () => {
                                 </form>
                                 <div className="mt-4 mb-2 sm:mb-4">
                                     <button
-                                        type="submit"
+                                        onClick={ googleLoginHandeler }
                                         className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide hover:text-white transition duration-200 rounded shadow-md hover:bg-blue-600 focus:shadow-outline focus:outline-none"
                                     >
                                         <FaGoogle /> Sign In With Google

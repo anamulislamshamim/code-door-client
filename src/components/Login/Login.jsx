@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { authContext } from '../../contexts/AuthContext';
 
 export const Register = () => {
     const { logIn, forgottenPassword } = useContext(authContext);
     const [ email, setEmail ] = useState(undefined);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const submitHandeler = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -18,6 +21,7 @@ export const Register = () => {
             .then(() => {
                 toast.success("Login Successfull!");
                 form.reset();
+                navigate(from, { replace: true });
             })
             .catch(() => {
                 toast.error("Wrong password or email!");

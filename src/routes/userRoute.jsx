@@ -1,6 +1,12 @@
 import Register from "../components/SignUp/Register";
 import Login from "../components/Login/Login";
 import Courses from "../components/Courses/Courses";
+import CardContainer from "../components/CardContainer/CardContainer";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
+import About from "../components/About/About";
+import CourseDetails from "../components/CourseDetails/CourseDetails";
+import Premium from "../components/Premium/Premium";
+import PrivateRoute from "./PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Home } = require("../components/Home/Home");
@@ -11,7 +17,7 @@ const router = createBrowserRouter([
     {
         path:"/",
         element:<Main />,
-        
+        errorElement:<ErrorPage />,
         children:[
             {
                 path:"/",
@@ -31,11 +37,33 @@ const router = createBrowserRouter([
             },
             {
                 path:"/about",
-                element:<p>This is about page</p>
+                element:<About />
             },
             {
                 path:"/courses",
-                element:<Courses />
+                element:<Courses />,
+                children: [
+                    {
+                        path:"/courses",
+                        loader: () => fetch(`https://codedoor-server.vercel.app/courses/`),
+                        element:<CardContainer />
+                    },
+                    {
+                        path:"/courses/:categoryId",
+                        loader:({ params }) => fetch(`https://codedoor-server.vercel.app/courses/${ params.categoryId }`),
+                        element:<CardContainer />
+                    },
+                    {
+                        path:"/courses/course/:id",
+                        loader: ({params}) => fetch(`https://codedoor-server.vercel.app/courses/course/${ params.id }`),
+                        element:<CourseDetails />
+                    }
+                ]
+            },
+            {
+                path:"/courses/course/checkout/:id",
+                loader: ({params}) => fetch(`https://codedoor-server.vercel.app/courses/course/${ params.id }`),
+                element:<PrivateRoute><Premium /></PrivateRoute>
             }
         ]
     }

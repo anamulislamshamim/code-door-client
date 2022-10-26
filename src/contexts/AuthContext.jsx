@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { createContext } from 'react';
 import { useState } from 'react';
@@ -32,6 +32,12 @@ const AuthContext = ({ children }) => {
     // update forgotten password:
     const forgottenPassword = (email) => {
         return sendPasswordResetEmail(auth, email);
+    };
+    // sign-in with google:
+    const googleProvider =new GoogleAuthProvider();
+    const loginWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
     }
 
     // implement use log out button:
@@ -56,7 +62,7 @@ const AuthContext = ({ children }) => {
         // when we change the component then we need to stop the observer for the performance issue:
         return () => unsubscribe();
     }, []);
-    const authInfo={user, registerWithEmailAndPassword, logOut, logIn, updateUserProfile, loading, forgottenPassword};
+    const authInfo={user, loginWithGoogle, registerWithEmailAndPassword, logOut, logIn, updateUserProfile, loading, forgottenPassword};
     return (
         <authContext.Provider value={ authInfo }>
             { children }

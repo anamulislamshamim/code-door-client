@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthContext';
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,11 +12,11 @@ export const Nav = () => {
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="flex items-center">
-            <Link
+            <NavLink
               to="/"
               aria-label="Company"
               title="Company"
-              className="inline-flex items-center mr-8"
+              className="inline-flex items-center mr-8 text-green-500"
             >
               <svg
                 className="w-8 text-teal-accent-400"
@@ -33,46 +33,52 @@ export const Nav = () => {
                 <rect x="14" y="1" width="7" height="6" />
                 <rect x="14" y="11" width="7" height="12" />
               </svg>
-              <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                Company
+              <span className="ml-2 text-xl font-bold tracking-wide text-gray-100">
+                CodeDoor
               </span>
-            </Link>
+            </NavLink>
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>
-                <Link
+                <NavLink
+                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
                   to="/courses"
                   aria-label="Our product"
                   title="Our product"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                 >
                   Courses
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
+                <NavLink
+                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
                   to="/blog"
                   aria-label="Our product"
                   title="Our product"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                 >
                   Blog
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link
-                  to="/"
+                <NavLink
+                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
+                  to="/about"
                   aria-label="About us"
                   title="About us"
-                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                 >
                   About us
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             {user ? <><li className='text-green-400 font-medium'>{user.displayName}</li><li>
-              <Link
+              <NavLink
                 onClick={logOut}
                 title="Log Out"
                 role="button"
@@ -80,26 +86,26 @@ export const Nav = () => {
                 hover:text-deep-purple-accent-400"
               >
                 Log Out
-              </Link>
+              </NavLink>
             </li></> : <><li>
-              <Link
+              <NavLink
                 to="/login"
                 aria-label="Sign in"
                 title="Sign in"
                 className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Sign in
-              </Link>
+              </NavLink>
             </li>
               <li>
-                <Link
+                <NavLink
                   to="/register"
                   className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
                   aria-label="Sign up"
                   title="Sign up"
                 >
                   Sign up
-                </Link>
+                </NavLink>
               </li></>}
           </ul>
           <div className="lg:hidden">
@@ -129,7 +135,7 @@ export const Nav = () => {
                 <div className="p-5 bg-white border rounded shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <Link
+                      <NavLink
                         to="/"
                         aria-label="Company"
                         title="Company"
@@ -151,9 +157,9 @@ export const Nav = () => {
                           <rect x="14" y="11" width="7" height="12" />
                         </svg>
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Company
+                          CodeDoor
                         </span>
-                      </Link>
+                      </NavLink>
                     </div>
                     <div>
                       <button
@@ -174,63 +180,66 @@ export const Nav = () => {
                   <nav>
                     <ul className="space-y-4">
                       <li>
-                        <Link
+                        <NavLink
                           to="/courses"
                           aria-label="Our product"
                           title="Our product"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                         >
                           Courses
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link
+                        <NavLink
                           to="/blog"
                           aria-label="Our product"
                           title="Our product"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                         >
                           Blog
-                        </Link>
+                        </NavLink>
                       </li>
                       <li>
-                        <Link
-                          to="/"
+                        <NavLink
+                          to="/about"
                           aria-label="About us"
                           title="About us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
                         >
                           About us
-                        </Link>
+                        </NavLink>
                       </li>
                       {user ? <><li>
-                        <Link
+                        <NavLink
                           onClick={logOut}
                           role="button"
                           title="Log Out"
                           className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Log Out
-                        </Link>
+                        </NavLink>
                       </li></> : <><li>
-                        <Link
+                        <NavLink
                           to="/login"
                           aria-label="Sign in"
                           title="Sign in"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Sign in
-                        </Link>
+                        </NavLink>
                       </li>
                         <li>
-                          <Link
+                          <NavLink
                             to="/register"
                             className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                             aria-label="Sign up"
                             title="Sign up"
                           >
                             Sign up
-                          </Link>
+                          </NavLink>
                         </li></>}
                     </ul>
                   </nav>
