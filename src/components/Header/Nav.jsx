@@ -40,7 +40,7 @@ export const Nav = () => {
             <ul className="flex items-center hidden space-x-8 lg:flex">
               <li>
                 <NavLink
-                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
+                  style={({ isActive }) => isActive ? { borderBottom: "2px solid green" } : undefined}
                   to="/courses"
                   aria-label="Our product"
                   title="Our product"
@@ -52,7 +52,7 @@ export const Nav = () => {
               </li>
               <li>
                 <NavLink
-                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
+                  style={({ isActive }) => isActive ? { borderBottom: "2px solid green" } : undefined}
                   to="/blog"
                   aria-label="Our product"
                   title="Our product"
@@ -64,7 +64,7 @@ export const Nav = () => {
               </li>
               <li>
                 <NavLink
-                  style={({isActive}) => isActive ? {borderBottom:"2px solid green"}:undefined}
+                  style={({ isActive }) => isActive ? { borderBottom: "2px solid green" } : undefined}
                   to="/about"
                   aria-label="About us"
                   title="About us"
@@ -72,6 +72,17 @@ export const Nav = () => {
                 hover:text-deep-purple-accent-400"
                 >
                   About us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/faq"
+                  aria-label="faq"
+                  title="faq"
+                  className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
+                >
+                  FAQ
                 </NavLink>
               </li>
             </ul>
@@ -184,7 +195,7 @@ export const Nav = () => {
                           to="/courses"
                           aria-label="Our product"
                           title="Our product"
-                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                          className="font-medium tracking-wide hover:text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
                 hover:text-deep-purple-accent-400"
                         >
                           Courses
@@ -195,7 +206,7 @@ export const Nav = () => {
                           to="/blog"
                           aria-label="Our product"
                           title="Our product"
-                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                          className="font-medium tracking-wide hover:text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
                 hover:text-deep-purple-accent-400"
                         >
                           Blog
@@ -206,10 +217,21 @@ export const Nav = () => {
                           to="/about"
                           aria-label="About us"
                           title="About us"
-                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                          className="font-medium tracking-wide hover:text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
                 hover:text-deep-purple-accent-400"
                         >
                           About us
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="/faq"
+                          aria-label="faq"
+                          title="faq"
+                          className="font-medium tracking-wide hover:text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 
+                hover:text-deep-purple-accent-400"
+                        >
+                          FAQ
                         </NavLink>
                       </li>
                       {user ? <><li>
@@ -217,7 +239,7 @@ export const Nav = () => {
                           onClick={logOut}
                           role="button"
                           title="Log Out"
-                          className="font-medium tracking-wide text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="font-medium tracking-wide hover:text-white hover:bg-green-500 p-1 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Log Out
                         </NavLink>
@@ -242,6 +264,15 @@ export const Nav = () => {
                           </NavLink>
                         </li></>}
                     </ul>
+                    <div className='mt-3'>
+                      <h6 className='mb-3'>All Categories:</h6>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/1">UI/UX Design</NavLink></p>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/3">Server</NavLink></p>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/6">Backend</NavLink></p>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/4">Database</NavLink></p>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/2">Problem Solving</NavLink></p>
+                      <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({ isActive }) => isActive ? { background: "green", color: "white" } : undefined} to="/courses/5">IT Support</NavLink></p>
+                    </div>
                   </nav>
                 </div>
               </div>

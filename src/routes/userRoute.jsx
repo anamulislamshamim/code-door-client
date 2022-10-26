@@ -7,6 +7,7 @@ import About from "../components/About/About";
 import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Premium from "../components/Premium/Premium";
 import PrivateRoute from "./PrivateRoute";
+import FAQ from "../components/FAQ/FAQ";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Home } = require("../components/Home/Home");
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
                 path:"/courses/course/checkout/:id",
                 loader: ({params}) => fetch(`https://codedoor-server.vercel.app/courses/course/${ params.id }`),
                 element:<PrivateRoute><Premium /></PrivateRoute>
+            },
+            {
+                path:"/faq",
+                element:<FAQ />
             }
         ]
     }

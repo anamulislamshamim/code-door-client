@@ -1,9 +1,7 @@
 import React from 'react';
-import { NavLink, Outlet, useLoaderData } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export const Courses = () => {
-  const courses = useLoaderData();
-  console.log(courses);
   return (
     <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
       <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -44,8 +42,8 @@ export const Courses = () => {
           Only education is not easy. It's need strong dedication, practice and patience. It also needs the mentality to take any challenges. We wishes best for you!
         </p>
       </div>
-      <div className='flex'>
-        <div className='w-1/5'>
+      <div className='lg:flex'>
+        <div className='lg:w-1/5 hidden lg:block'>
           <h6 className='mb-3'>All Categories:</h6>
           <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({isActive}) => isActive ? {background:"green",color:"white"}:undefined} to="/courses/1">UI/UX Design</NavLink></p>
           <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({isActive}) => isActive ? {background:"green",color:"white"}:undefined} to="/courses/3">Server</NavLink></p>
@@ -54,7 +52,7 @@ export const Courses = () => {
           <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({isActive}) => isActive ? {background:"green",color:"white"}:undefined} to="/courses/2">Problem Solving</NavLink></p>
           <p className="p-2 mb-2"><NavLink className="py-3 px-1 rounded" style={({isActive}) => isActive ? {background:"green",color:"white"}:undefined} to="/courses/5">IT Support</NavLink></p>
         </div>
-        <div className='w-4/5'>
+        <div className='lg:w-4/5'>
           <Outlet />
         </div>
       </div>

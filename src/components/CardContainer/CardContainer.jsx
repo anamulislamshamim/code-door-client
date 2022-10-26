@@ -8,7 +8,7 @@ const CardContainer = () => {
         <div>
             <div className="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 md:grid-cols-2">
             {
-              courses.length !== 0 ? courses.map(course => <Card course={course} />):"No Result Found!"
+              courses.length !== 0 ? courses.map(course => <Card key={ course.id } course={course} />):"No Result Found!"
             }
           </div>
         </div>
