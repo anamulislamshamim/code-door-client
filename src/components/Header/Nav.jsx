@@ -88,7 +88,7 @@ export const Nav = () => {
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-            {user ? <><li className='text-green-400 font-medium'>{user.displayName}</li><li>
+            {user ? <>{ user.photoURL ? <img className='rounded-full' style={{ width:"2rem", height:"2rem"}} src={ user.photoURL } title={ user.displayName } alt="profile" /> : <li className='text-green-400 font-medium'>{user.displayName}</li>}<li>
               <NavLink
                 onClick={logOut}
                 title="Log Out"
