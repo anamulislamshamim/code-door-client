@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 export const Register = () => {
     const [check, setCheck] = useState(false);
-    const { registerWithEmailAndPassword, updateUserProfile, loginWithGoogle } = useContext(authContext);
+    const { registerWithEmailAndPassword, updateUserProfile, loginWithGoogle, loginWithGitHub } = useContext(authContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/";
@@ -44,6 +44,14 @@ export const Register = () => {
             .catch(() => {
                 toast.error("please try again!");
             })
+    };
+    const githubLoginHandeler = () => {
+        loginWithGitHub()
+            .then(() => {
+                toast.success("successfully signed-in!");
+                navigate(from, { replace: true });
+            })
+            .then(error => toast.error("something went wrong!"));
     }
     return (
         <div className="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -151,7 +159,7 @@ export const Register = () => {
                                 </div>
                                 <div className="mt-4 mb-2 sm:mb-4">
                                     <button
-                                        type="submit"
+                                        onClick={ githubLoginHandeler }
                                         className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide hover:text-white transition duration-200 rounded shadow-md hover:bg-blue-600 focus:shadow-outline focus:outline-none"
                                     >
                                         <FaGithub /> Sign In With Github
