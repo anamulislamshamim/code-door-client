@@ -8,6 +8,7 @@ import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Premium from "../components/Premium/Premium";
 import PrivateRoute from "./PrivateRoute";
 import FAQ from "../components/FAQ/FAQ";
+import Blog from "../components/Blog/Blog";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Home } = require("../components/Home/Home");
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path:"/blog",
-                element:<p>This is blog component</p>
+                element:<Blog />
             },
             {
                 path:"/about",
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
             {
                 path:"/faq",
                 element:<FAQ />
-            }
+            }        
         ]
     }
 ]);
