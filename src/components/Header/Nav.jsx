@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { authContext } from '../../contexts/AuthContext';
+import Toggle from '../ThemeContext/Toggle';
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(authContext);
@@ -85,6 +86,7 @@ export const Nav = () => {
                   FAQ
                 </NavLink>
               </li>
+              <Toggle />
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">

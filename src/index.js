@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import AuthContext from './contexts/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ThemeProvider from './components/ThemeContext/ThemeContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <ToastContainer />
     <AuthContext>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </AuthContext>
   </React.StrictMode>
 );
