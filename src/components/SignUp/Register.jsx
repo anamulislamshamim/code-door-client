@@ -20,8 +20,15 @@ export const Register = () => {
         const profilePicture = form.profilePicture.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(fullName, profilePicture, email, password);
-        const profile = {displayName:fullName, photoURL:profilePicture}
+        // password validation:
+        // eslint-disable-next-line no-useless-escape
+        const testRegx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        const testResult = testRegx.test(password);
+        if(!testResult){
+            toast.error("please give a strong password!");
+            return;
+        };
+        const profile = {displayName:fullName, photoURL:profilePicture};
         registerWithEmailAndPassword(email, password)
             .then(
                 () => {

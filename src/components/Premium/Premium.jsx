@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const Premium = () => {
     const premiumData = useLoaderData();
-    console.log(premiumData);
+    toast.success("Congratulatons for purchased!💘");
     return (
       <div className="relative flex flex-col-reverse py-16 lg:py-0 lg:flex-col">
         <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">

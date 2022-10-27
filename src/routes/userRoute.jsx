@@ -9,6 +9,7 @@ import Premium from "../components/Premium/Premium";
 import PrivateRoute from "./PrivateRoute";
 import FAQ from "../components/FAQ/FAQ";
 import Blog from "../components/Blog/Blog";
+import Map from "../components/ReactMap/Map";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Home } = require("../components/Home/Home");
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path:"/faq",
                 element:<FAQ />
+            },
+            {
+                path:"/map",
+                element:<Map />
             }        
         ]
     }
